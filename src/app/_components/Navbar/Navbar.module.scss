@@ -3,11 +3,15 @@
 .navbarWrapper {
   width: auto;
   height: 70px;
-  
+  padding-left: 25px;
+
   @include flexRow;
   justify-content: space-between;
 
-  @include navbarText;
+  font-family: $mali;
+  font-size: $super;
+  font-weight: $semibold-weight;
+
   background-color: $background;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
