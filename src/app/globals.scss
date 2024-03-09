@@ -1,0 +1,56 @@
+// Global colors
+$primary: #ccd8f8;
+$primary-dark: #6a65ff;
+$primary-light: #e7e7ff;
+$secondary: #fcdcfe;
+$background: #f9fbfc;
+
+$pri-black: #090027;
+$pri-white: #fff;
+$pri-green: #2db46e;
+$pri-red: #ed4337;
+
+// Global font family
+$lexend: "Lexend", sans-serif;
+$openSans: "Open Sans", sans-serif;
+$mali: "Mali", sans-serif;
+
+// Global font sizes
+$small: 12px;
+$normal: 14px;
+$medium: 16px;
+$large: 18px;
+$huge: 20px;
+$extra: 24px;
+$super: 32px;
+$brand: 64px;
+
+// Global font weights
+$light-weight: 300;
+$regular-weight: 400;
+$medium-weight: 500;
+$semibold-weight: 600;
+$bold-weight: 700;
+
+// Responsive breakpoints
+$width-breakpoint: 1200px;
+$phone-breakpoint: 576px;
+
+// Mixing styles
+@mixin navbarText {
+  font-family: $lexend;
+  font-size: $super;
+  font-weight: $semibold-weight;
+}
+
+@mixin username {
+  font-family: $mali;
+  font-size: $extra;
+  font-weight: $semibold-weight;
+}
+
+@mixin email {
+  font-family: $mali;
+  font-size: $huge;
+  font-weight: $regular-weight;
+}
