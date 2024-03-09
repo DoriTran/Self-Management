@@ -48,7 +48,7 @@ const Sidebar: FC<SidebarProps> = ({ isExpanded, setIsExpanded }) => {
         </div>
       </div>
       <div className={styles.botSidebarContainer}>
-        <SideAction icon={faRightFromBracket} onClick={() => console.log("Open logout modal!")} />
+        <SideAction icon={faRightFromBracket} onClick={() => {}} />
       </div>
     </div>
   );

@@ -42,12 +42,6 @@ $expandedSidebar: 300px;
 $collapsedSidebar: 70px;
 
 // Mixing styles
-@mixin navbarText {
-  font-family: $mali;
-  font-size: $super;
-  font-weight: $semibold-weight;
-}
-
 @mixin username {
   font-family: $mali;
   font-size: $extra;
