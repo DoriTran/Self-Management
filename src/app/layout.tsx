@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import App from "./_components/App/App";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./globals.css";
-import Navbar from "./_layoutComponent/Navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: "Self Management",
@@ -17,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
+      <body>
+        <App>{children}</App>
       </body>
     </html>
   );

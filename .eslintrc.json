@@ -21,7 +21,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/react-in-jsx-scope": "off",
     "import/prefer-default-export": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", "tsx"] }],
     "react/prop-types": "off",
     "import/no-unresolved": "off",
     "react/no-array-index-key": "off",
@@ -37,7 +37,10 @@
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "class-methods-use-this": "off",
-    "max-len": ["error", { "code": 135 }],
-    "react/button-has-type": "off"
+    "max-len": ["error", { "code": 110 }],
+    "react/button-has-type": "off",
+    "import/extensions": "off",
+    "no-undef": "off",
+    "react/require-default-props": "off"
   }
 }

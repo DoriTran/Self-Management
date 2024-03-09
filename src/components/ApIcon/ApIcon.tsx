@@ -14,12 +14,20 @@ interface ApIconProps {
 const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size, fixedWidth = true, ...restProps }) => {
   const iconColor = useMemo(() => {
     return themes.color[color] ? themes.color[color] : color;
-  }, []);
+  }, [color]);
 
   if (!size) return null;
   return (
     <>
-      {icon && <FontAwesomeIcon icon={icon} fontSize={size} color={iconColor} fixedWidth={fixedWidth} {...restProps} />}
+      {icon && (
+        <FontAwesomeIcon
+          icon={icon}
+          fontSize={size}
+          color={iconColor}
+          fixedWidth={fixedWidth}
+          {...restProps}
+        />
+      )}
       {Icon && <Icon sx={{ fontSize: size, color: iconColor }} {...restProps} />}
     </>
   );

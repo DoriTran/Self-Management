@@ -3,39 +3,34 @@
 .navbarWrapper {
   width: auto;
   height: 70px;
-  display: flex;
-  flex-direction: row;
+  
+  @include flexRow;
   justify-content: space-between;
-  align-items: center;
 
   @include navbarText;
   background-color: $background;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .infoWrapper {
-    display: flex;
-    flex-direction: row;
+    @include flexRow;
     justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
+    gap: 15px;
+    height: 100%;
   }
 }
 
 .infoCardWrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
+  @include baseGradient;
+  @include flexRow;
   gap: 10px;
-  border-bottom-left-radius: 25px;
-  background-color: $primary;
-  padding-left: 25px;
+
+  border-bottom-left-radius: 35px;
+  padding: 0 10px 0 30px;
+  height: 100%;
 
   .infoCard {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-end;
     gap: 0px;
 

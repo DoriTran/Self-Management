@@ -11,6 +11,7 @@ export const themes : Themes = {
     background: "#f9fbfc",
     
     priBlack: "#090027",
+    priBlackLight: "#31363F",
     priWhite: "#fff",
     priGreen: "#2db46e",
     priRed: "#ed4337",    

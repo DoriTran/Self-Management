@@ -6,6 +6,7 @@ $secondary: #fcdcfe;
 $background: #f9fbfc;
 
 $pri-black: #090027;
+$pri-black-light: #31363f;
 $pri-white: #fff;
 $pri-green: #2db46e;
 $pri-red: #ed4337;
@@ -36,6 +37,10 @@ $bold-weight: 700;
 $width-breakpoint: 1200px;
 $phone-breakpoint: 576px;
 
+// Other global styles
+$expandedSidebar: 300px;
+$collapsedSidebar: 70px;
+
 // Mixing styles
 @mixin navbarText {
   font-family: $lexend;
@@ -53,4 +58,22 @@ $phone-breakpoint: 576px;
   font-family: $mali;
   font-size: $huge;
   font-weight: $regular-weight;
+}
+
+@mixin baseGradient {
+  background: linear-gradient(to right, $primary, $secondary);
+}
+
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
