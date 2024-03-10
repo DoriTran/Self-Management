@@ -1,0 +1,58 @@
+@import "@/app/globals.scss";
+
+$totalBlanceIconSize: 175px;
+
+.totalBlance {
+  padding: 15px;
+  transition: height 0.3s ease;
+
+  .totalBlanceWrapper {
+    width: 350px;
+    background: none;
+    background-color: $primary;
+    border: 1px $pri-white solid;
+    padding: 30px 0;
+    @include flexCol;
+    gap: 10px;
+
+    .totalIconWrapper {
+      @include flexRow;
+      background-color: $pri-white;
+      width: $totalBlanceIconSize;
+      height: $totalBlanceIconSize;
+      border-radius: 50%;
+    }
+
+    .totalBlanceText {
+      font-family: $mali;
+      font-weight: $bold-weight;
+      font-size: $super;
+    }
+
+    .totalBlanceNumber {
+      font-family: $lexend;
+      font-weight: $bold-weight;
+      font-size: $brand;
+      color: $primary-dark;
+    }
+  }
+
+  .dailyChangeWrapper {
+    @include flexCol;
+    padding-top: 15px;
+    gap: 5px;
+
+    .todayChangesText {
+      font-family: $mali;
+      font-weight: $bold-weight;
+      font-size: $extra;
+    }
+
+    .todayChangesNumber {
+      @include flexRow;
+      justify-content: space-around;
+      height: 50px;
+      width: 90%;
+    }
+  }
+}

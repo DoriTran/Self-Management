@@ -1,0 +1,21 @@
+@import "@/app/globals.scss";
+
+.pageContainer {
+  margin: 35px;
+  @include flexRow;
+  gap: 50px;
+}
+
+.number {
+  font-size: $super;
+  font-weight: $bold-weight;
+  font-family: $lexend;
+}
+
+.upNumber {
+  color: $pri-green;
+}
+
+.downNumber {
+  color: $pri-red;
+}

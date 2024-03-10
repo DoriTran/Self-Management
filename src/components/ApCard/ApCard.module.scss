@@ -1,0 +1,6 @@
+@import "@/app/globals.scss";
+
+.apCardStyles {
+  @include baseGradient;
+  border-radius: 25px;
+}
