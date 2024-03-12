@@ -8,6 +8,7 @@ export const themes: Themes = {
     primaryDark: "#6a65ff",
     primaryLight: "#e7e7ff",
     secondary: "#fcdcfe",
+    secondartDark: "#f7418f",
     background: "#f9fbfc",
 
     priBlack: "#090027",

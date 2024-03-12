@@ -16,10 +16,7 @@ const SideTab: FC<SideTabProps> = ({ tab, selected, expanded }) => {
   const router = useRouter();
 
   return (
-    <div
-      className={clsx(styles.tab, { [styles.tabSelected]: selected })}
-      onClick={() => router.push(tab.path)}
-    >
+    <div className={clsx(styles.tab, { [styles.tabSelected]: selected })} onClick={() => router.push(tab.path)}>
       {selected && <div className={styles.selectedGum} />}
       <div
         className={clsx(

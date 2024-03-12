@@ -1,0 +1,40 @@
+@import "@/app/globals.scss";
+
+.input {
+  border-radius: 10px;
+  border: 2px solid $secondary;
+  padding: 0 10px;
+  color: $primary-dark;
+  font-family: $lexend;
+  font-size: $large;
+}
+
+.input:focus {
+  outline: $secondary-dark solid 1px;
+}
+
+.correct {
+  border-color: $pri-green;
+  color: $pri-green;
+}
+
+.correct:focus {
+  outline-color: $pri-green;
+}
+
+.error {
+  border-color: $pri-red;
+  color: $pri-red;
+}
+
+.error:focus {
+  outline-color: $pri-red;
+}
+
+.inputWithStartAdornment {
+  padding-left: 45px;
+}
+
+.inputWithEndAdornment {
+  padding-right: 45px;
+}

@@ -20,13 +20,7 @@ const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size, fixedWidth
   return (
     <>
       {icon && (
-        <FontAwesomeIcon
-          icon={icon}
-          fontSize={size}
-          color={iconColor}
-          fixedWidth={fixedWidth}
-          {...restProps}
-        />
+        <FontAwesomeIcon icon={icon} fontSize={size} color={iconColor} fixedWidth={fixedWidth} {...restProps} />
       )}
       {Icon && <Icon sx={{ fontSize: size, color: iconColor }} {...restProps} />}
     </>

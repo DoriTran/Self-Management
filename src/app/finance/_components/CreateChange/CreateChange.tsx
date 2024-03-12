@@ -5,14 +5,22 @@ import { useState } from "react";
 import styles from "./CreateChange.module.scss";
 
 const CreateChange = () => {
-  const [changes, setChanges] = useState<number>(0);
-  const [notes, setNotes] = useState<string>("");
+  const [changes, setChanges] = useState<number>(-12345);
+  const [notes, setNotes] = useState<string>("abcdef");
 
   return (
     <ApCard className={styles.createChange} elevation={3}>
       <div className={styles.createWrapper}>
         <div className={styles.changeText}>Change</div>
-        <ApInput label="lmao" value={changes} setValue={setChanges} />
+        <ApInput
+          value={changes}
+          setValue={setChanges}
+          isCorrect={changes > 0}
+          isError={changes < 0}
+          height={80}
+          width={150}
+          align="center"
+        />
       </div>
       <div className={styles.noteWrapper}>
         <div className={styles.infoWrapper}>Credit and plus chip</div>

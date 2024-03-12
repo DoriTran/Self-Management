@@ -1,6 +1,7 @@
-import { InputAdornment, TextField, TextFieldVariants } from "@mui/material";
-import { ForwardedRef, forwardRef } from "react";
+import clsx from "clsx";
+import { ForwardedRef, forwardRef, useMemo } from "react";
 import styles from "./TextInput.module.scss";
+import ClassNameProps from "../../_interface/ClassNameProps";
 
 interface TextInputProps {
   type: string;
@@ -16,11 +17,18 @@ interface TextInputProps {
   onEsc?: (event: React.KeyboardEventHandler<HTMLInputElement>) => void;
 
   // Input accessory
-  variant?: TextFieldVariants;
-  startAdornment: React.ReactNode;
-  endAdornment: React.ReactNode;
+  startAdornment?: boolean;
+  endAdornment?: boolean;
 
   // Styling properties
+  width?: number;
+  height?: number;
+  align?: string;
+  verticalAlign?: string;
+  isCorrect?: boolean;
+  isError?: boolean;
+  style?: object;
+  className?: string | ClassNameProps;
 
   // The rest properties
   [key: string]: any;
@@ -33,12 +41,19 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       value,
       setValue,
       onChange,
+      onKeyDown,
       onEnter,
       onEsc,
-      onKeyDown,
-      variant = "standard",
       startAdornment,
       endAdornment,
+      width = 100,
+      height = 35,
+      align = "left",
+      verticalAlign = "middle",
+      isCorrect,
+      isError,
+      style = {},
+      className,
       ...restProps
     }: TextInputProps,
     ref: ForwardedRef<HTMLInputElement>,
@@ -54,22 +69,31 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       }
     };
 
+    const handleOnChange = (event: any) => {
+      onChange?.(event);
+      setValue(event.target.value);
+    };
+
+    const inputStyle = useMemo<object>(() => {
+      return { ...style, textAlign: align, verticalAlign, width, height };
+    }, [width, height, align, verticalAlign, style]);
+
     return (
-      <TextField
+      <input
+        ref={ref}
         type={type}
-        inputRef={ref}
-        variant={variant}
-        inputProps={{
-          className: styles.input,
-        }}
-        InputProps={{
-          className: styles.Input,
-          startAdornment: startAdornment && <InputAdornment position="start">{startAdornment}</InputAdornment>,
-          endAdornment: endAdornment && <InputAdornment position="end">{endAdornment}</InputAdornment>,
-        }}
-        onChange={onChange || ((event) => setValue(event.target.value))}
+        value={value}
+        style={inputStyle}
+        className={clsx(
+          styles.input,
+          isCorrect && styles.correct,
+          isError && styles.error,
+          typeof className === "string" ? className : className?.input,
+          startAdornment && styles.inputWithStartAdornment,
+          endAdornment && styles.inputWithEndAdornment,
+        )}
         onKeyDown={handleKeyDown}
-        autoComplete="off"
+        onChange={handleOnChange}
         {...restProps}
       />
     );
