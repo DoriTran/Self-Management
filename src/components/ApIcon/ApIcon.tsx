@@ -6,17 +6,16 @@ interface ApIconProps {
   icon?: any; // For font awesome icons
   Icon?: FC<any>; // For mui material icons
   color?: string;
-  size: number;
+  size?: number;
   fixedWidth?: boolean;
   [key: string]: any;
 }
 
-const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size, fixedWidth = true, ...restProps }) => {
+const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size = 25, fixedWidth = true, ...restProps }) => {
   const iconColor = useMemo(() => {
     return themes.color[color] ? themes.color[color] : color;
   }, [color]);
 
-  if (!size) return null;
   return (
     <>
       {icon && (

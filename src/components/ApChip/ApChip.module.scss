@@ -1,0 +1,32 @@
+@import "@/app/globals.scss";
+
+.chipContainer {
+  @include flexRow;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.labelWrapper {
+  width: 100%;
+  font-family: $mali;
+  font-size: $huge;
+}
+
+.actionWrapper {
+  @include flexRow;
+  gap: 2px;
+}
+
+.hoverWrapper {
+  position: absolute;
+  top: 0.05rem;
+  right: 0;
+  background-color: $primary-light;
+  border-radius: 20px;
+  height: 27px;
+  overflow: hidden;
+  transition:
+    width 0.15s ease-in-out,
+    min-width 0.15s ease-in-out,
+    opacity 0.15s ease-in-out;
+}

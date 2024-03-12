@@ -2,6 +2,7 @@
 
 import { ApCard, ApInput } from "@/components";
 import { useState } from "react";
+import ApChip from "@/components/ApChip/ApChip";
 import styles from "./CreateChange.module.scss";
 
 const CreateChange = () => {
@@ -24,6 +25,7 @@ const CreateChange = () => {
       </div>
       <div className={styles.noteWrapper}>
         <div className={styles.infoWrapper}>Credit and plus chip</div>
+        <ApChip label="lmao" />
         <ApInput value={notes} setValue={setNotes} />
       </div>
     </ApCard>
