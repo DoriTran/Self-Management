@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import TextInput from "../TextInput/TextInput";

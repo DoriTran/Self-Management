@@ -23,7 +23,9 @@ $medium: 16px;
 $large: 18px;
 $huge: 20px;
 $extra: 24px;
+$moderate: 28px;
 $super: 32px;
+$ample: 48px;
 $brand: 64px;
 
 // Global font weights
@@ -34,7 +36,9 @@ $semibold-weight: 600;
 $bold-weight: 700;
 
 // Responsive breakpoints
-$width-breakpoint: 1200px;
+$screen-breakpoints: 1536px;
+$desktop-breakpoint: 1200px;
+$tablet-breakpoint: 768px;
 $phone-breakpoint: 576px;
 
 // Other global styles
@@ -70,4 +74,9 @@ $collapsedSidebar: 70px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@mixin size($size) {
+  width: $size;
+  height: $size;
 }

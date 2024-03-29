@@ -3,7 +3,7 @@ interface Themes {
   font: { [key: string]: string };
   fontSize: { [key: string]: string };
   fontWeight: { [key: string]: number };
-  breakpoints: { [key: string]: string };
+  breakpoints: { [key: string]: number };
   sidebar: { [key: string]: string };
 }
 
@@ -33,7 +33,9 @@ export const themes: Themes = {
     large: "18px",
     huge: "20px",
     extra: "24px",
+    moderate: "28px",
     super: "32px",
+    ample: "48px",
     brand: "64px",
   },
   fontWeight: {
@@ -44,8 +46,10 @@ export const themes: Themes = {
     bold: 700,
   },
   breakpoints: {
-    width: "1200px",
-    phone: "576px",
+    screen: 1536,
+    desktop: 1200,
+    tablet: 768,
+    phone: 576,
   },
   sidebar: {
     expandedWidth: "300px",
