@@ -1,17 +1,16 @@
 import { Paper } from "@mui/material";
-import clsx from "clsx";
 import { FC } from "react";
-import styles from "./ApCard.module.scss";
+import { mixin } from "@/utils/themes";
 
 interface ApCardProps {
   children: React.ReactNode;
-  className?: string;
+  sx?: object;
   [key: string]: any;
 }
 
-const ApCard: FC<ApCardProps> = ({ children, className, ...restProps }) => {
+const ApCard: FC<ApCardProps> = ({ children, sx, ...restProps }) => {
   return (
-    <Paper className={clsx(styles.apCardStyles, className)} {...restProps}>
+    <Paper sx={{ borderRadius: "25px", ...mixin.baseGradient, ...sx }} {...restProps}>
       {children}
     </Paper>
   );

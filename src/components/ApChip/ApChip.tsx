@@ -1,42 +1,12 @@
 import { Chip } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
+import clsx from "clsx";
 import { themes } from "@/utils/themes";
+import styles from "./ApChip.module.scss";
+import { ApChipProps } from "./ChipInterface";
 import { ApIcon } from "..";
 import ChipIcons from "./ChipIcons";
-import styles from "./ApChip.module.scss";
-
-interface IconProps {
-  icon?: any;
-  Icon?: FC<any>;
-  size?: number;
-}
-
-export interface ActionIconsProps {
-  icons?: any[];
-  hovers?: any[];
-  actions?: ((...args: any[]) => any)[];
-  sizes?: number[];
-}
-
-interface ApChipStyles {
-  label: object;
-  [key: string]: any;
-}
-
-interface ApChipProps {
-  icon?: IconProps;
-  endIcons?: ActionIconsProps;
-  hoverIcons?: ActionIconsProps;
-  label?: string;
-  onClick?: (event: any) => void;
-  onDoubleClick?: (event: any) => void;
-  onRightClick?: (event: any) => void;
-  onMouseEnter?: (event: any) => void;
-  onMouseLeave?: (event: any) => void;
-  style?: ApChipStyles;
-  fullWidth?: boolean;
-  [key: string]: any;
-}
+import { chipColors, chipStyle, iconStyle, labelStyle, onlyIconStyle } from "./ChipStyle";
 
 const ApChip: FC<ApChipProps> = ({
   icon,
@@ -48,7 +18,12 @@ const ApChip: FC<ApChipProps> = ({
   onRightClick,
   onMouseEnter,
   onMouseLeave,
+  small,
+  filled,
+  color,
   style = {},
+  sx = {},
+  className,
   fullWidth = "false",
   ...restProps
 }) => {
@@ -70,6 +45,14 @@ const ApChip: FC<ApChipProps> = ({
     setHover(false);
   };
 
+  // Style calculations
+  const iconColor = useMemo<string>(() => {
+    const contrastColor = color ? chipColors[color].dark : themes.color.primaryDark;
+    if (filled) return hover ? contrastColor : themes.color.priWhite;
+    return contrastColor;
+  }, [filled, color, hover]);
+
+  // Hover handlers
   useEffect(() => {
     setHover(false);
   }, [endIcons, hoverIcons]);
@@ -77,55 +60,83 @@ const ApChip: FC<ApChipProps> = ({
   return (
     <Chip
       variant="outlined"
-      color="primary"
-      icon={icon && <ApIcon icon={icon.icon} Icon={icon.Icon} size={icon.size} />}
+      icon={
+        icon && <ApIcon icon={icon.icon} Icon={icon.Icon} size={icon.size || small ? 15 : 20} color={iconColor} />
+      }
       onClick={handleLeftClick}
       onDoubleClick={onDoubleClick}
       onContextMenu={handleRightClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      className={typeof className === "object" ? className?.chip : className}
       {...{ disableRipple }}
       label={
         <>
           <div
-            className={styles.chipContainer}
+            className={clsx(styles.labelContainer, typeof className === "object" && className.container)}
             style={{ ...style?.label, width: fullWidth ? "100%" : "fit-content" }}
           >
-            {label && <div className={styles.labelWrapper}>{label}</div>}
-            <ChipIcons icons={endIcons} rippleControl={setDisableRipple} unmount={hoverIcons && hover} />
+            {label && (
+              <div className={clsx(styles.labelWrapper, typeof className === "object" && className.label)}>
+                {label}
+              </div>
+            )}
+            <ChipIcons
+              icons={endIcons}
+              rippleControl={setDisableRipple}
+              unmount={hoverIcons && hover}
+              small={small}
+              color={iconColor}
+              style={style.endIcons}
+            />
           </div>
           <ChipIcons
             hover
             icons={hoverIcons}
             rippleControl={setDisableRipple}
+            small={small}
+            color={iconColor}
             style={{
-              minWidth: hover ? "29px" : 0,
+              minWidth: hover ? (small ? "20px" : "29px") : 0,
               width: hover ? "auto" : 0,
               opacity: hover ? 1 : 0,
+              ...(color && { backgroundColor: chipColors[color].base }),
+              ...style.hoverIcons,
             }}
           />
         </>
       }
       sx={{
         position: "relative",
-        backgroundColor: themes.color.priWhite,
-        border: `1px solid ${themes.color.primaryDark}`,
-        color: themes.color.primaryDark,
-        height: "30px",
-        paddingLeft: icon ? "4px" : 0,
-        minWidth: "30px",
-        maxWidth: "46vw",
-        ".MuiChip-label": {
-          padding: icon ? "0 3px 0 12px" : "0 6px",
-          width: "100%",
-        },
-        "&.MuiButtonBase-root.Mui-focusVisible": {
-          backgroundColor: themes.color.secondary,
-        },
+        height: small ? "25px" : "30px",
+        ...chipStyle,
 
-        "&&:hover": {
-          backgroundColor: themes.color.secondary,
-        },
+        ...(color && {
+          backgroundColor: chipColors[color].light,
+          borderColor: chipColors[color].dark,
+          color: chipColors[color].dark,
+
+          "&&:hover": {
+            backgroundColor: chipColors[color].base,
+          },
+        }),
+
+        ...(filled && {
+          border: "none",
+          backgroundColor: color ? chipColors[color].dark : themes.color.primaryDark,
+          color: hover ? (color ? chipColors[color].dark : themes.color.primaryDark) : themes.color.priWhite,
+
+          "&&:hover": {
+            backgroundColor: color ? chipColors[color].base : themes.color.primary,
+          },
+        }),
+
+        ...(icon && label && iconStyle),
+        ...(icon && !label && onlyIconStyle),
+        ...(label && labelStyle),
+
+        ...sx,
+        ...style,
       }}
       {...restProps}
     />

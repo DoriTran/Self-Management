@@ -8,10 +8,19 @@ interface ApIconProps {
   color?: string;
   size?: number;
   fixedWidth?: boolean;
+  sx?: object;
   [key: string]: any;
 }
 
-const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size = 25, fixedWidth = true, ...restProps }) => {
+const ApIcon: FC<ApIconProps> = ({
+  icon,
+  Icon,
+  color = "black",
+  size = 25,
+  fixedWidth = true,
+  sx,
+  ...restProps
+}) => {
   const iconColor = useMemo(() => {
     return themes.color[color] ? themes.color[color] : color;
   }, [color]);
@@ -21,7 +30,7 @@ const ApIcon: FC<ApIconProps> = ({ icon, Icon, color = "black", size = 25, fixed
       {icon && (
         <FontAwesomeIcon icon={icon} fontSize={size} color={iconColor} fixedWidth={fixedWidth} {...restProps} />
       )}
-      {Icon && <Icon sx={{ fontSize: size, color: iconColor }} {...restProps} />}
+      {Icon && <Icon sx={{ fontSize: size, color: iconColor, ...sx }} {...restProps} />}
     </>
   );
 };

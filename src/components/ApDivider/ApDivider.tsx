@@ -5,10 +5,11 @@ interface ApDividerProps {
   vertical?: boolean;
   thickness?: number;
   style?: object;
+  sx?: object;
   [key: string]: any;
 }
 
-const ApDivider: FC<ApDividerProps> = ({ vertical, thickness, style, ...restProps }) => {
+const ApDivider: FC<ApDividerProps> = ({ vertical, thickness, style, sx, ...restProps }) => {
   const styles = useMemo<object | undefined>(() => {
     if (!thickness) return style;
     return {
@@ -17,7 +18,7 @@ const ApDivider: FC<ApDividerProps> = ({ vertical, thickness, style, ...restProp
     };
   }, [thickness, vertical, style]);
 
-  return <Divider orientation={vertical ? "vertical" : "horizontal"} sx={{ ...styles }} {...restProps} />;
+  return <Divider orientation={vertical ? "vertical" : "horizontal"} sx={{ ...styles, ...sx }} {...restProps} />;
 };
 
 export default ApDivider;
