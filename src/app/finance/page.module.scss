@@ -3,6 +3,7 @@
 .pageContainer {
   margin: 35px;
   @include flexRow;
+  justify-content: flex-start;
   gap: 50px;
 }
 
