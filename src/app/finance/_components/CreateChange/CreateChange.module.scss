@@ -2,18 +2,20 @@
 
 .createChange {
   @include flexRow;
+  align-items: flex-end;
   gap: 25px;
   padding: 15px;
+  margin-top: 5px;
   flex-grow: 1;
 
   .createWrapper {
     @include flexCol;
-    gap: 5px;
+    gap: 10px;
 
     .changeText {
       font-family: $mali;
       font-weight: $bold-weight;
-      font-size: $super;
+      font-size: $moderate;
     }
   }
 

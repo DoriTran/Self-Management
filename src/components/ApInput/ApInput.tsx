@@ -19,6 +19,7 @@ interface ApInputProps {
   startAdornment?: AdornmentProps;
   endAdornment?: AdornmentProps;
   // Style properties
+  width?: string | number;
   style?: StyleProps;
   className?: string | ClassNameProps;
   // Rest properties
@@ -27,22 +28,29 @@ interface ApInputProps {
 
 const ApInput = forwardRef<HTMLInputElement, ApInputProps>(
   (
-    { label, startAdornment, endAdornment, style, className, ...restProps }: ApInputProps,
+    { label, startAdornment, endAdornment, width = 100, style, className, ...restProps }: ApInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
-      <LabelWrapper label={label} style={style?.label} {...(typeof className === "object" && { className })}>
+      <LabelWrapper
+        label={label}
+        style={style?.label}
+        width={width}
+        {...(typeof className === "object" && { className })}
+      >
         <AdornmentWrapper
           startAdornment={startAdornment}
           startAdornmentStyle={style?.startAdornmentStyle}
           endAdornment={endAdornment}
           endAdornmentStyle={style?.endAdornmentStyle}
+          width={width}
           {...(typeof className === "object" && { className })}
         >
           <Input
             ref={ref}
             startAdornment={startAdornment !== undefined}
             endAdornment={endAdornment !== undefined}
+            width={width}
             {...restProps}
           />
         </AdornmentWrapper>

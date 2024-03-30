@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import clsx from "clsx";
 import Adornment, { AdornmentProps } from "./Adornment";
 import ClassNameProps from "../../_interface/ClassNameProps";
@@ -10,6 +10,7 @@ interface AdornmentWrapperProps {
   endAdornment?: AdornmentProps;
   startAdornmentStyle?: object;
   endAdornmentStyle?: object;
+  width: string | number;
   className?: ClassNameProps;
 }
 
@@ -19,11 +20,17 @@ const AdornmentWrapper: FC<AdornmentWrapperProps> = ({
   endAdornment,
   startAdornmentStyle = {},
   endAdornmentStyle = {},
+  width,
   className,
 }) => {
-  if (!startAdornment && !endAdornment) return children;
+  const trueWidth = useMemo<string | number>(() => {
+    if (typeof width === "string" && width.includes("%")) return "100%";
+    return width;
+  }, [width]);
+
+  if ((!startAdornment && !endAdornment) || (typeof width === "number" && width < 70)) return children;
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} style={{ width: trueWidth }}>
       {startAdornment && (
         <div
           className={clsx(
@@ -44,7 +51,10 @@ const AdornmentWrapper: FC<AdornmentWrapperProps> = ({
       {endAdornment && (
         <div
           className={clsx(styles.endAdornment, className?.endAdornment, endAdornment.onClick && styles.clickable)}
-          style={endAdornmentStyle}
+          style={{
+            ...(typeof width === "string" && width.includes("%") && { left: `calc(${width} - 45px)` }),
+            ...endAdornmentStyle,
+          }}
         >
           {typeof endAdornment === "object" ? (
             <Adornment clickable={endAdornment.onClick} {...endAdornment} />

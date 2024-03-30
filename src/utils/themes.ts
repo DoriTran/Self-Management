@@ -21,6 +21,7 @@ export const themes: Themes = {
     priWhite: "#fff",
     priGreen: "#2db46e",
     priRed: "#ed4337",
+    priGrey: "#898c90",
   },
   font: {
     lexend: "Lexend, sans-serif",

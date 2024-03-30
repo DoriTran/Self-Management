@@ -3,7 +3,7 @@
 .totalBlance {
   margin: 5px;
   padding: 15px;
-  height: 480px;
+  height: 510px;
   transition: height 0.3s ease-in-out;
   overflow: hidden;
 
@@ -66,7 +66,7 @@
 
 @media screen and (max-width: $screen-breakpoints) {
   .totalBlance {
-    height: 300px;
+    height: 330px;
 
     .totalBlanceWrapper {
       width: 300px;

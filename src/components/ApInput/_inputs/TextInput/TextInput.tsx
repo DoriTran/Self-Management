@@ -21,7 +21,7 @@ interface TextInputProps {
   endAdornment?: boolean;
 
   // Styling properties
-  width?: number;
+  width: number | string;
   height?: number;
   align?: string;
   verticalAlign?: string;
@@ -46,7 +46,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       onEsc,
       startAdornment,
       endAdornment,
-      width = 100,
+      width,
       height = 35,
       align = "left",
       verticalAlign = "middle",

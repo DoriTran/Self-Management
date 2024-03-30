@@ -1,9 +1,12 @@
 @import "@/app/globals.scss";
 
 .input {
+  box-sizing: border-box;
   border-radius: 10px;
   border: 2px solid $secondary;
   padding: 0 10px;
+  // padding: 0;
+  margin: 0;
   color: $primary-dark;
   font-family: $lexend;
   font-size: $large;
