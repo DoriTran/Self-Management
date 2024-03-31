@@ -1,5 +1,6 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import clsx from "clsx";
+import useTrueWidth from "@/hooks/useTrueWidth";
 import Adornment, { AdornmentProps } from "./Adornment";
 import ClassNameProps from "../../_interface/ClassNameProps";
 import styles from "./Adornment.module.scss";
@@ -23,10 +24,7 @@ const AdornmentWrapper: FC<AdornmentWrapperProps> = ({
   width,
   className,
 }) => {
-  const trueWidth = useMemo<string | number>(() => {
-    if (typeof width === "string" && width.includes("%")) return "100%";
-    return width;
-  }, [width]);
+  const trueWidth = useTrueWidth(width);
 
   if ((!startAdornment && !endAdornment) || (typeof width === "number" && width < 70)) return children;
   return (

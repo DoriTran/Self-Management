@@ -37,7 +37,7 @@ export const labelStyle: object = {
 };
 
 // Chip colors
-interface ColorType {
+export interface ColorType {
   dark: string;
   base: string;
   light: string;
@@ -70,7 +70,7 @@ export const chipColors: { [key: string]: ColorType } = {
     light: "#FEECE2",
   },
   yellow: {
-    dark: "#FFC94A",
+    dark: "#e5cd1c",
     base: "#FFFC9B",
     light: "#FFFDD7",
   },
@@ -79,9 +79,39 @@ export const chipColors: { [key: string]: ColorType } = {
     base: "#AEE2FF",
     light: "#E0F4FF",
   },
+  brown: {
+    dark: "#561C24",
+    base: "#ddc5c5",
+    light: "#FFE7E7",
+  },
+  maroon: {
+    dark: "#B47B84",
+    base: "#d6bcbc",
+    light: "#FFE7E7",
+  },
+  peach: {
+    dark: "#ffb082",
+    base: "#F7DED0",
+    light: "#FEECE2",
+  },
+  teal: {
+    dark: "#176B87",
+    base: "#C4DFDF",
+    light: "#E3F4F4",
+  },
+  mint: {
+    dark: "#33BBC5",
+    base: "#C5FFF8",
+    light: "#d8f7ec",
+  },
+  grey: {
+    dark: "#7D7C7C",
+    base: "#C7C8CC",
+    light: "#F1F0E8",
+  },
   black: {
     dark: "#0C0C0C",
-    base: "#D8D9DA",
-    light: "#EEEEEE",
+    base: "#b0b3b6",
+    light: "#D8D9DA",
   },
 };

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { themes } from "@/utils/themes";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { ChangeEvent, FC, useMemo } from "react";
 
@@ -14,6 +15,7 @@ interface ApCheckboxProps {
 
   style?: object;
   size?: "small" | "medium" | number;
+  color?: string;
 
   icon?: React.ReactNode;
   checkedIcon?: React.ReactNode;
@@ -33,6 +35,7 @@ const ApCheckbox: FC<ApCheckboxProps> = ({
 
   style,
   size = "medium",
+  color = themes.color.primaryDark,
 
   icon,
   checkedIcon,
@@ -67,10 +70,11 @@ const ApCheckbox: FC<ApCheckboxProps> = ({
       icon,
       checkedIcon,
       sx: {
-        ...style,
+        ...(color && { color, "&.Mui-checked": { color } }),
         "& .MuiSvgIcon-root": {
           fontSize: typeof size === "number" ? size : undefined,
         },
+        ...style,
       },
     };
   }, [checked]);

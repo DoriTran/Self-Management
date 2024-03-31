@@ -2,14 +2,7 @@
 
 import { ApScrollbar } from "@/components";
 import TotalBalance from "./TotalBalance/TotalBalance";
-
-const dummyBalances = {
-  credit: "100.000",
-  cash: "2.000",
-  momo: "18.500",
-  shopee: "100",
-  other: "1500",
-};
+import { dummyBalances } from "../../page";
 
 const WalletBalance = () => {
   // Height of the page - navbar - margin - inner margin

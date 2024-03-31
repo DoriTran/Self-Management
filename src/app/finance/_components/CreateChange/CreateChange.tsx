@@ -6,11 +6,12 @@ import { ApCard, ApInput } from "@/components";
 import { useState } from "react";
 import ApChip from "@/components/ApChip/ApChip";
 import { faPlay, faStar, faTree } from "@fortawesome/free-solid-svg-icons";
-import TestInput from "@/components/ApInput/TestInput";
+import TestChip from "@/components/ApChip/TestChip";
 import styles from "./CreateChange.module.scss";
 
 const CreateChange = () => {
   const [changes, setChanges] = useState<number>(-12345);
+  const [balance, setBalance] = useState<string>("credit");
   const [notes, setNotes] = useState<string>("abcdef");
 
   return (
@@ -28,18 +29,19 @@ const CreateChange = () => {
           align="center"
         />
       </div>
-      {/* <div className={styles.noteWrapper}>
-        <div className={styles.infoWrapper}>Credit and plus chip</div>
+      <div className={styles.noteWrapper}>
+        <div className={styles.infoWrapper}>
+          <TestChip />
+        </div>
         <ApInput
           value={notes}
           setValue={setNotes}
           placeholder="What cause this changes . . ?"
           height={40}
-          width="calc(100% - 22px)"
-          endAdornment={{ icon: faPlay, onClick: () => console.log("New Changes") }}
+          width="100%"
+          endAdornment={{ icon: faPlay, onClick: () => setNotes("") }}
         />
-      </div> */}
-      <TestInput />
+      </div>
     </ApCard>
   );
 };

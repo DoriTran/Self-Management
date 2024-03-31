@@ -1,87 +1,67 @@
-import { faStar, faTree } from "@fortawesome/free-solid-svg-icons";
-import { FC } from "react";
+"use client";
+
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useMemo, useState } from "react";
 import ApChip from "./ApChip";
+import { chipColors } from "./ChipStyle";
+import { ApInput, ApTest } from "..";
 
-interface TestChipProps {
-  small?: boolean;
-  filled?: boolean;
-}
+const TestChip = () => {
+  const [options, setOptions] = useState<string[]>([]);
+  const [label, setLabel] = useState<string>("Testing label");
+  const [totalEndIcons, setTotalEndIcons] = useState<number>(1);
+  const [totalHoverIcons, setTotalHoverIcons] = useState<number>(1);
 
-const TestChip: FC<TestChipProps> = ({ small, filled }) => {
+  const chipProps = useMemo<object>(() => {
+    const availableColors = Object.keys(chipColors);
+    const onClick = options.includes("Clickable") ? () => {} : undefined;
+    return {
+      ...(options.includes("Small") && { small: true }),
+      ...(options.includes("Filled") && { filled: true }),
+      ...(!options.includes("All colors") && {
+        color: options.filter((eachOption: string) => availableColors.includes(eachOption))[0],
+      }),
+      ...(options.includes("Start icon") && { icon: { icon: faStar } }),
+      ...(options.includes("End icon") && { endIcons: { icons: Array(totalEndIcons).fill(faStar), onClick } }),
+      ...(options.includes("Hover icon") && {
+        hoverIcons: { icons: Array(totalHoverIcons).fill(faStar), onClick },
+      }),
+    };
+  }, [options, totalEndIcons, totalHoverIcons]);
+
   return (
-    <>
-      <ApChip small={small} filled={filled} label="label" />
-      <ApChip small={small} filled={filled} icon={{ icon: faStar }} />
-      <ApChip small={small} filled={filled} icon={{ icon: faStar }} label="icon" />
-      <ApChip small={small} filled={filled} endIcons={{ icons: [faStar] }} label="end 1 icon" />
-      <ApChip small={small} filled={filled} endIcons={{ icons: [faStar, faTree] }} label="end 2 icons" />
-      <ApChip small={small} filled={filled} hoverIcons={{ icons: [faStar] }} label="hover 1 icon" />
-      <ApChip small={small} filled={filled} hoverIcons={{ icons: [faStar, faTree] }} label="hover 2 icons" />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="green"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="green"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="pink"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="pink"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="purple"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="purple"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="red"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="red"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="orange"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="orange"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="yellow"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="yellow"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="blue"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="blue"
-      />
-      <ApChip
-        small={small}
-        filled={filled}
-        color="black"
-        icon={{ icon: faStar }}
-        hoverIcons={{ icons: [faStar] }}
-        label="black"
-      />
-    </>
+    <ApTest
+      optionsLists={[
+        { title: "Style", checks: ["Small", "Filled"] },
+        { title: "Color", radios: Object.keys(chipColors), checks: ["All colors"] },
+        { title: "Icon", checks: ["Start icon", "End icon", "Hover icon"] },
+        { title: "Clickable", checks: ["Clickable"] },
+      ]}
+      setOptions={setOptions}
+      config={
+        <div style={{ display: "flex", gap: 15 }}>
+          <ApInput value={label} setValue={setLabel} label="Label" width="150px" />
+          <ApInput
+            type="number"
+            value={totalEndIcons}
+            setValue={setTotalEndIcons}
+            label="End icons"
+            width="120px"
+          />
+          <ApInput
+            type="number"
+            value={totalHoverIcons}
+            setValue={setTotalHoverIcons}
+            label="Hover icons"
+            width="120px"
+          />
+        </div>
+      }
+    >
+      {!options.includes("All colors") && <ApChip label={label} {...chipProps} />}
+      {options.includes("All colors") &&
+        Object.entries(chipColors).map(([key]) => <ApChip label={key} key={key} color={key} {...chipProps} />)}
+    </ApTest>
   );
 };
 

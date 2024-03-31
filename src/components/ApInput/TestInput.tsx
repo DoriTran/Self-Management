@@ -20,10 +20,10 @@ const TestInput = () => {
       isCorrect: options.includes("isCorrect"),
       isError: options.includes("isError"),
       ...(options.includes("Start Adornment") && {
-        startAdornment: { icon: faCircleLeft, onClick: () => console.log("Start Adornment Clicked!") },
+        startAdornment: { icon: faCircleLeft, onClick: () => {} },
       }),
       ...(options.includes("End Adornment") && {
-        endAdornment: { icon: faCircleRight, onClick: () => console.log("End Adornment Clicked!") },
+        endAdornment: { icon: faCircleRight, onClick: () => {} },
       }),
     };
   }, [height, options, width]);
