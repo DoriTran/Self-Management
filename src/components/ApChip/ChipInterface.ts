@@ -44,7 +44,7 @@ export interface ApChipProps {
   style?: ApChipStyles;
   sx?: object;
   className?: ChipClassName | string; // string type → chip classname
-  fullWidth?: boolean;
+  width?: string | number;
   [key: string]: any;
 }
 

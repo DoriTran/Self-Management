@@ -9,6 +9,7 @@ import { ApInput, ApTest } from "..";
 const TestChip = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [label, setLabel] = useState<string>("Testing label");
+  const [width, setWidth] = useState<string>("fit-content");
   const [totalEndIcons, setTotalEndIcons] = useState<number>(1);
   const [totalHoverIcons, setTotalHoverIcons] = useState<number>(1);
 
@@ -16,6 +17,7 @@ const TestChip = () => {
     const availableColors = Object.keys(chipColors);
     const onClick = options.includes("Clickable") ? () => {} : undefined;
     return {
+      width,
       ...(options.includes("Small") && { small: true }),
       ...(options.includes("Filled") && { filled: true }),
       ...(!options.includes("All colors") && {
@@ -27,7 +29,7 @@ const TestChip = () => {
         hoverIcons: { icons: Array(totalHoverIcons).fill(faStar), onClick },
       }),
     };
-  }, [options, totalEndIcons, totalHoverIcons]);
+  }, [width, options, totalEndIcons, totalHoverIcons]);
 
   return (
     <ApTest
@@ -41,6 +43,7 @@ const TestChip = () => {
       config={
         <div style={{ display: "flex", gap: 15 }}>
           <ApInput value={label} setValue={setLabel} label="Label" width="150px" />
+          <ApInput value={width} setValue={setWidth} label="Width" width="150px" />
           <ApInput
             type="number"
             value={totalEndIcons}

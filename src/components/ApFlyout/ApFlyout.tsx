@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from "react";
 import { ApScrollbar } from "@/components";
-import { Menu, MenuItem, Fade, PopoverOrigin } from "@mui/material";
+import { Menu, MenuItem, Fade, PopoverOrigin, Popover } from "@mui/material";
 import styles from "./ApFlyout.module.scss";
 
 interface FlyoutStyle {
@@ -12,8 +13,8 @@ interface FlyoutStyle {
 
 interface ApFlyoutProps {
   anchor: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
-  anchorOrigin: PopoverOrigin;
-  transformOrigin: PopoverOrigin;
+  anchorOrigin?: PopoverOrigin;
+  transformOrigin?: PopoverOrigin;
 
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,8 +24,8 @@ interface ApFlyoutProps {
   autoFocus?: boolean;
   selected?: number;
 
-  onOpen: (event: any) => void;
-  onClose: () => void;
+  onOpen?: (event: any) => void;
+  onClose?: () => void;
 
   noOptionToShowText?: string;
   options?: (string | number)[];
@@ -82,11 +83,11 @@ const ApFlyout: FC<ApFlyoutProps> = ({
         style: { cursor: "pointer" },
       })}
       {anchorEl && (
-        <Menu
-          MenuListProps={{
-            "aria-labelledby": "fade-button",
-            sx: style?.menu,
-          }}
+        <Popover
+          // MenuListProps={{
+          //   "aria-labelledby": "fade-button",
+          //   sx: style?.menu,
+          // }}
           autoFocus={autoFocus}
           anchorEl={anchorEl}
           open={noUnmountWhenClose || isOpen}
@@ -95,15 +96,27 @@ const ApFlyout: FC<ApFlyoutProps> = ({
           anchorOrigin={anchorOrigin}
           transformOrigin={transformOrigin}
           sx={{ ...(noUnmountWhenClose && !isOpen && { display: "none" }), ...style }}
-          disableAutoFocusItem
+          // disableAutoFocusItem
         >
           <ApScrollbar
             hidden
             maxHeight={maxHeight}
-            onKeyDown={(event: React.KeyboardEvent) => event.stopPropagation()}
+            onKeyDown={(event: React.KeyboardEvent) => {
+              console.log("scrollbar bubble up");
+              event.stopPropagation();
+            }}
           >
-            <div style={style?.children}>{children}</div>
-            {options?.length === 0 && <div className={styles.noOptionToShow}>{noOptionToShowText}</div>}
+            <div
+              style={style?.children}
+              onKeyDown={(event: React.KeyboardEvent) => {
+                console.log("? bubble up");
+                event.preventDefault();
+                event.stopPropagation();
+              }}
+            >
+              {children}
+            </div>
+            {/* {options?.length === 0 && <div className={styles.noOptionToShow}>{noOptionToShowText}</div>}
             {options?.map((eachItem: any, index: number) => (
               <MenuItem
                 key={eachItem}
@@ -113,9 +126,9 @@ const ApFlyout: FC<ApFlyoutProps> = ({
               >
                 {eachItem}
               </MenuItem>
-            ))}
+            ))} */}
           </ApScrollbar>
-        </Menu>
+        </Popover>
       )}
     </>
   );

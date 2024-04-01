@@ -1,68 +1,81 @@
-export interface Tag {
-  color: string;
-  description: string;
-  subTags?: string[];
-}
+import { TagData } from "./tagType";
 
-export const defaultTags: { [key: string]: Tag } = {
-  food: {
+export const defaultTags: TagData[] = [
+  {
+    tag: "food",
     color: "yellow",
     description: "Food and Drink",
     subTags: ["snack"],
   },
-  game: {
+  {
+    tag: "game",
     color: "red",
     description: "Game payments",
     subTags: ["laptop", "mobile"],
   },
-  supply: {
+  {
+    tag: "supply",
     color: "purple",
     description: "Necessity",
   },
-  travel: {
+  {
+    tag: "travel",
     color: "peach",
     description: "Gasoline and travel payments",
-    subTags: ["gasoline", "travel"],
+    subTags: ["gasoline"],
   },
-  entertain: {
+  {
+    tag: "entertain",
     color: "mint",
     description: "Movies, concerts ...",
-    subTags: ["gasoline", "travel"],
   },
-  self: {
+  {
+    tag: "self",
     color: "pink",
     description: "Self payments",
     subTags: ["clothing", "toy"],
   },
-  health: {
+  {
+    tag: "health",
     color: "green",
     description: "Health payments and medication",
     subTags: ["health payment", "medication"],
   },
-  rent: {
+  {
+    tag: "rent",
     color: "brown",
     description: "Rental payments",
   },
-  energy: {
+  {
+    tag: "energy",
     color: "orange",
     description: "Electricity and Water",
     subTags: ["electricity", "water"],
   },
-  learn: {
+  {
+    tag: "learn",
     color: "maroon",
     description: "Learning costs",
   },
-  income: {
+  {
+    tag: "income",
     color: "blue",
     description: "Salary and other income",
-    subTags: ["salary", "income"],
+    subTags: ["salary", "loan"],
   },
-  invest: {
+  {
+    tag: "invest",
     color: "grey",
     description: "Investments",
+    subTags: ["salary"],
   },
-  other: {
+  {
+    tag: "loan",
+    color: "teal",
+    description: "Loans",
+  },
+  {
+    tag: "other",
     color: "black",
-    description: "",
   },
-};
+];

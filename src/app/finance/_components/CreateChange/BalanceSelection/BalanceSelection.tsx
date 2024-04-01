@@ -5,7 +5,6 @@
 import { ApChip } from "@/components";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FC, useState } from "react";
-import TestChip from "@/components/ApChip/TestChip";
 import styles from "./BalanceSelection.module.scss";
 
 interface BalanceSelectionProps {

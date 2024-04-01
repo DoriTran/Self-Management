@@ -24,7 +24,7 @@ const ApChip: FC<ApChipProps> = ({
   style = {},
   sx = {},
   className,
-  fullWidth = "false",
+  width = "fit-content",
   ...restProps
 }) => {
   const [disableRipple, setDisableRipple] = useState<boolean>(false);
@@ -74,7 +74,7 @@ const ApChip: FC<ApChipProps> = ({
         <>
           <div
             className={clsx(styles.labelContainer, typeof className === "object" && className.container)}
-            style={{ ...style?.label, width: fullWidth ? "100%" : "fit-content" }}
+            style={{ ...style?.label, width }}
           >
             {label && (
               <div className={clsx(styles.labelWrapper, typeof className === "object" && className.label)}>
