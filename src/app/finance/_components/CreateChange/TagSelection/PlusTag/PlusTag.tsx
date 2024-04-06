@@ -3,9 +3,8 @@
 import { ApChip, ApFlyout } from "@/components";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FC, useMemo, useState } from "react";
-import { defaultTags } from "../data/defaultTags";
+import { defaultTags, TagData, TagSelected } from "@/data/tag";
 import TagOption from "./TagOption";
-import { TagData, TagSelected } from "../data/tagType";
 
 interface PlusTagProps {
   tags: TagSelected[];

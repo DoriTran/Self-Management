@@ -2,8 +2,7 @@ import { FC, useMemo } from "react";
 import { ApChip } from "@/components";
 import { faCircleXmark as faCircleXmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faCircleXmark as faCircleXmarkSolid } from "@fortawesome/free-solid-svg-icons";
-import { TagSelected } from "../data/tagType";
-import { defaultTags } from "../data/defaultTags";
+import { defaultTags, TagSelected } from "@/data/tag";
 
 interface SelectedTagProps {
   tag: TagSelected;

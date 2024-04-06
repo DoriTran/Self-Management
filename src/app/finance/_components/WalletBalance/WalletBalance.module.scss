@@ -1,11 +1,11 @@
 @import "@/app/globals.scss";
 
 .walletBalanceScrollContainer {
-  min-width: 350px;
+  min-width: 390px;
 }
 
 @media screen and (max-width: $screen-breakpoints) {
   .walletBalanceScrollContainer {
-    min-width: 300px;
+    min-width: 340px;
   }
 }

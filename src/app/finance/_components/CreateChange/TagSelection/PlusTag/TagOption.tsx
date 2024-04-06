@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { ApChip, ApDivider } from "@/components";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { TagData, TagSelected } from "@/data/tag";
 import styles from "./PlusTag.module.scss";
-import { TagData, TagSelected } from "../data/tagType";
 
 interface TagOptionProps {
   tag: TagData;
@@ -16,7 +16,7 @@ const TagOption: FC<TagOptionProps> = ({ tag, setTags }) => {
         small
         label={tag.tag}
         color={tag.color}
-        width="100px"
+        width="110px"
         onClick={() => setTags((prevTag: TagSelected[]) => [...prevTag, { tag: tag.tag }])}
         {...(tag.subTags && { endIcons: { icons: [faCaretRight] } })}
       />
