@@ -1,3 +1,5 @@
+"use client";
+
 import { Chip } from "@mui/material";
 import { FC, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";

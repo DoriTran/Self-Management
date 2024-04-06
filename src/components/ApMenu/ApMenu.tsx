@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useState } from "react";
 import { ApScrollbar } from "@/components";
 import { Menu, MenuItem, Fade, PopoverOrigin } from "@mui/material";

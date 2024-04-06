@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useRef } from "react";
 import { themes } from "@/utils/themes";
 import CustomScrollbar from "./CustomScrollbar";

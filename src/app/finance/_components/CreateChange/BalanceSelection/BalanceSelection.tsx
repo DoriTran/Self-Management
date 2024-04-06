@@ -2,9 +2,11 @@
 
 "use client";
 
-import { ApChip } from "@/components";
+import { ApChip, ApIcon, ApMenu } from "@/components";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FC, useState } from "react";
+import { dummyBalance } from "@/data/balance/dummy";
+import { BalanceType } from "@/data/balance";
 import styles from "./BalanceSelection.module.scss";
 
 interface BalanceSelectionProps {
@@ -16,9 +18,20 @@ const BalanceSelection: FC<BalanceSelectionProps> = ({ balance, setBalance }) =>
   const [isSelecting, setIsSelecting] = useState<boolean>(false);
 
   return (
-    <div className={styles.selectionWrapper}>
-      <ApChip endIcons={{ icons: [faCaretDown] }} onClick={() => setIsSelecting(true)} />
-    </div>
+    <ApMenu
+      anchor={<ApChip label={balance} endIcons={{ icons: [faCaretDown] }} onClick={() => setIsSelecting(true)} />}
+      isOpen={isSelecting}
+      setIsOpen={setIsSelecting}
+      options={dummyBalance.map((eachBalanceType: BalanceType) => ({
+        value: eachBalanceType.name,
+        label: (
+          <>
+            <ApIcon icon={eachBalanceType.icon} dcon={eachBalanceType.data} />
+            {eachBalanceType.name}
+          </>
+        ),
+      }))}
+    />
   );
 };
 
