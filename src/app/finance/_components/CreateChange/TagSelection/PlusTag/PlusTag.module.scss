@@ -1,0 +1,8 @@
+@import "@/app/globals.scss";
+
+.container {
+  width: 400px;
+  @include flexRow;
+  justify-content: flex-start;
+  gap: 5px;
+}

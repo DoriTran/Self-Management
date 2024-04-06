@@ -3,6 +3,7 @@ import { ApChip } from "@/components";
 import { faCircleXmark as faCircleXmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faCircleXmark as faCircleXmarkSolid } from "@fortawesome/free-solid-svg-icons";
 import { TagSelected } from "../data/tagType";
+import { defaultTags } from "../data/defaultTags";
 
 interface SelectedTagProps {
   tag: TagSelected;
@@ -10,9 +11,11 @@ interface SelectedTagProps {
 }
 
 const SelectedTag: FC<SelectedTagProps> = ({ tag, setTags }) => {
-  const tagLabel = useMemo<string>(() => {
-    if (tag.subTag) return `${tag.tag} • ${tag.subTag}`;
-    return tag.tag;
+  const tagProps = useMemo<{ color: string | undefined; label: string }>(() => {
+    return {
+      color: defaultTags.find((eachDefaultTag) => eachDefaultTag.tag === tag.tag)?.color,
+      label: tag.subTag ? `${tag.tag} • ${tag.subTag}` : tag.tag,
+    };
   }, [tag]);
 
   const removeTag = () => {
@@ -22,12 +25,12 @@ const SelectedTag: FC<SelectedTagProps> = ({ tag, setTags }) => {
   return (
     <ApChip
       filled
-      label={tagLabel}
       hoverIcons={{
         icons: [faCircleXmarkRegular],
         hovers: [faCircleXmarkSolid],
         actions: [removeTag],
       }}
+      {...tagProps}
     />
   );
 };

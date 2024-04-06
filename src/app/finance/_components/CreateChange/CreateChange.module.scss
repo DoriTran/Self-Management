@@ -27,7 +27,7 @@
 
     .infoWrapper {
       @include flexRow;
-
+      justify-content: flex-start;
       flex-wrap: wrap;
       gap: 5px;
     }

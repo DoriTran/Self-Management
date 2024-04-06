@@ -1,13 +1,22 @@
 import React, { FC, useState } from "react";
 import { ApScrollbar } from "@/components";
-import { Fade, PopoverOrigin, Popover } from "@mui/material";
+import { Menu, MenuItem, Fade, PopoverOrigin } from "@mui/material";
+import styles from "./ApMenu.module.scss";
 
-interface FlyoutStyle {
-  children: object;
+interface ApMenuStyle {
+  menu: object;
+  option: object;
+  header: object;
+  footer: object;
   [key: string]: any;
 }
 
-interface ApFlyoutProps {
+interface MenuOption {
+  value: any;
+  label: React.ReactNode | string | number;
+}
+
+interface ApMenuProps {
   anchor: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
   anchorOrigin?: PopoverOrigin;
   transformOrigin?: PopoverOrigin;
@@ -15,48 +24,62 @@ interface ApFlyoutProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
-  style?: FlyoutStyle;
+  style?: ApMenuStyle;
   maxHeight?: string;
   autoFocus?: boolean;
+  selected?: number;
 
   onOpen?: (event: any) => void;
   onClose?: () => void;
 
+  noOptionToShowText?: string;
+  options?: MenuOption[];
+
+  disabled?: boolean;
   noUnmountWhenClose?: boolean;
 
-  children?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
 }
 
-const ApFlyout: FC<ApFlyoutProps> = ({
+const ApMenu: FC<ApMenuProps> = ({
   anchor,
   anchorOrigin = {
     vertical: "center",
     horizontal: "center",
   },
   transformOrigin = {
-    vertical: "top",
-    horizontal: "left",
+    vertical: "center",
+    horizontal: "center",
   },
   isOpen,
   setIsOpen,
   style,
   maxHeight = "75vh",
   autoFocus = false,
+  selected,
   onOpen,
   onClose,
 
+  noOptionToShowText = "No options to show",
+  options,
+  disabled,
   noUnmountWhenClose,
-  children,
+
+  header,
+  footer,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    if (disabled) return;
     onOpen?.(event);
     setIsOpen(true);
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
+    if (disabled) return;
     onClose?.();
     setIsOpen?.(false);
   };
@@ -68,7 +91,11 @@ const ApFlyout: FC<ApFlyoutProps> = ({
         style: { cursor: "pointer" },
       })}
       {anchorEl && (
-        <Popover
+        <Menu
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+            sx: style?.menu,
+          }}
           autoFocus={autoFocus}
           anchorEl={anchorEl}
           open={noUnmountWhenClose || isOpen}
@@ -77,14 +104,27 @@ const ApFlyout: FC<ApFlyoutProps> = ({
           anchorOrigin={anchorOrigin}
           transformOrigin={transformOrigin}
           sx={{ ...(noUnmountWhenClose && !isOpen && { display: "none" }), ...style }}
+          disableAutoFocusItem
         >
           <ApScrollbar hidden maxHeight={maxHeight}>
-            <div style={style?.children}>{children}</div>
+            <div style={style?.header}>{header}</div>
+            {options?.length === 0 && <div className={styles.noOptionToShow}>{noOptionToShowText}</div>}
+            {options?.map((eachItem: MenuOption, index: number) => (
+              <MenuItem
+                key={index}
+                onClick={() => setAnchorEl(null)}
+                selected={index === selected}
+                sx={style?.option}
+              >
+                {eachItem.label}
+              </MenuItem>
+            ))}
+            <div style={style?.footer}>{footer}</div>
           </ApScrollbar>
-        </Popover>
+        </Menu>
       )}
     </>
   );
 };
 
-export default ApFlyout;
+export default ApMenu;

@@ -6,6 +6,7 @@ export { default as ApDivider } from "./ApDivider/ApDivider";
 export { default as ApFlyout } from "./ApFlyout/ApFlyout";
 export { default as ApIcon } from "./ApIcon/ApIcon";
 export { default as ApInput } from "./ApInput/ApInput";
+export { default as ApMenu } from "./ApMenu/ApMenu";
 export { default as ApRadioGroup } from "./ApRadioGroup/ApRadioGroup";
 export { default as ApScrollbar } from "./ApScrollbar/ApScrollbar";
 export { default as ApTest } from "./ApTest/ApTest";

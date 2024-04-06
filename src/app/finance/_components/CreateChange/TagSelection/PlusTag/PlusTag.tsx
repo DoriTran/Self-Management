@@ -23,10 +23,16 @@ const PlusTag: FC<PlusTagProps> = ({ tags, setTags }) => {
   return (
     <ApFlyout
       anchor={<ApChip icon={{ icon: faPlus }} />}
-      anchorOrigin={{ vertical: "center", horizontal: "center" }}
-      transformOrigin={{ vertical: "center", horizontal: "center" }}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
+      style={{
+        children: {
+          display: "flex",
+          flexDirection: "column",
+          gap: 5,
+          padding: "10px 5px",
+        },
+      }}
     >
       {availableTags.map((eachAvailableTag: TagData) => (
         <TagOption key={eachAvailableTag.tag} tag={eachAvailableTag} setTags={setTags} />

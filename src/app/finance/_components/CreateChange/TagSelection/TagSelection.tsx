@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./TagSelection.module.scss";
 import { TagSelected } from "./data/tagType";
 import SelectedTag from "./SelectedTag/SelectedTag";
 import PlusTag from "./PlusTag/PlusTag";
@@ -11,12 +10,12 @@ interface TagSelectionProps {
 
 const TagSelection: FC<TagSelectionProps> = ({ tags, setTags }) => {
   return (
-    <div className={styles.container}>
+    <>
       {tags.map((tag) => (
         <SelectedTag key={tag.tag} tag={tag} setTags={setTags} />
       ))}
       <PlusTag tags={tags} setTags={setTags} />
-    </div>
+    </>
   );
 };
 
