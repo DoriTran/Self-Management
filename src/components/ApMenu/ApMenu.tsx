@@ -51,8 +51,8 @@ const ApMenu: FC<ApMenuProps> = ({
     horizontal: "center",
   },
   transformOrigin = {
-    vertical: "center",
-    horizontal: "center",
+    vertical: "top",
+    horizontal: "left",
   },
   isOpen,
   setIsOpen,

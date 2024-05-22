@@ -20,6 +20,7 @@ const BalanceSelection: FC<BalanceSelectionProps> = ({ balance, setBalance }) =>
   return (
     <ApMenu
       anchor={<ApChip label={balance} endIcons={{ icons: [faCaretDown] }} onClick={() => setIsSelecting(true)} />}
+      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       isOpen={isSelecting}
       setIsOpen={setIsSelecting}
       options={dummyBalance.map((eachBalanceType: BalanceType) => ({
