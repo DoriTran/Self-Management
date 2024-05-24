@@ -22,10 +22,8 @@ const Sidebar: FC<SidebarProps> = ({ isExpanded, setIsExpanded }) => {
   }, [tabsArray, pathname]);
 
   const sideTabsWrapperRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const topPosition = useWindowSizeEffect(() => {
     const firstChild = sideTabsWrapperRef.current?.children[0] as HTMLElement;
-    console.log(firstChild.offsetTop);
     return firstChild.offsetTop;
   });
 
