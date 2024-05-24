@@ -23,32 +23,32 @@ const tabs: { [key: string]: Tab } = {
   finance: {
     icon: faCoins,
     path: "/finance",
-    title: "Finance Management",
+    title: "Finance",
   },
   expense: {
     icon: faCalendarCheck,
     path: "/expense",
-    title: "Expense Tracking",
+    title: "Expense",
   },
   weight: {
     icon: faWeightScale,
     path: "/weight",
-    title: "Weight Monitoring",
+    title: "Weight",
   },
   diet: {
     icon: faUtensils,
     path: "/diet",
-    title: "Diet Control",
+    title: "Diet",
   },
   exercise: {
     icon: faDumbbell,
     path: "/exercise",
-    title: "Settings",
+    title: "Exercise",
   },
   settings: {
     icon: faGear,
     path: "/settings",
-    title: "Dashboard",
+    title: "Settings",
   },
 };
 

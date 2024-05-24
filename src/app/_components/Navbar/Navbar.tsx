@@ -2,7 +2,7 @@
 
 import { ApIcon } from "@/components";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-import tabs from "@/app/_components/Sidebar/tabs";
+import tabs from "@/app/_components/Sidebar/SideTab.type";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { sliceTo } from "@/utils/slice";

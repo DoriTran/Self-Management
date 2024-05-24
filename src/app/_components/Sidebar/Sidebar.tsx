@@ -1,14 +1,13 @@
 "use client";
 
-import { ApAvatar } from "@/components";
-import { FC } from "react";
+import { FC, useMemo, useRef } from "react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import useWindowSizeEffect from "@/hooks/useWindowSizeEffect";
+import SideTab from "./_components/SideTab/SideTab";
+import tabs from "./SideTab.type";
+import { Indicator, LogoToggle } from "./_components";
 import styles from "./Sidebar.module.scss";
-import SideTab from "./SideTab";
-import tabs from "./tabs";
-import SideAction from "./SideAction";
 
 interface SidebarProps {
   isExpanded: boolean;
@@ -17,27 +16,26 @@ interface SidebarProps {
 
 const Sidebar: FC<SidebarProps> = ({ isExpanded, setIsExpanded }) => {
   const pathname = usePathname();
+  const tabsArray = useMemo(() => Object.entries(tabs), []);
+  const selectedIndex = useMemo(() => {
+    return tabsArray.findIndex(([, value]) => value.path === pathname);
+  }, [tabsArray, pathname]);
+
+  const sideTabsWrapperRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const topPosition = useWindowSizeEffect(() => {
+    const firstChild = sideTabsWrapperRef.current?.children[0] as HTMLElement;
+    console.log(firstChild.offsetTop);
+    return firstChild.offsetTop;
+  });
 
   return (
-    <div
-      className={clsx(
-        styles.sidebarWrapper,
-        { [styles.sidebarExpanded]: isExpanded },
-        { [styles.sidebarCollapsed]: !isExpanded },
-      )}
-    >
-      <div className={styles.topSidebarContainer}>
-        <div
-          className={clsx(
-            styles.logo,
-            { [styles.logoExpanded]: isExpanded },
-            { [styles.logoCollapsed]: !isExpanded },
-          )}
-        >
-          <ApAvatar alt="Self" size={45} src="/icon.png" onClick={() => setIsExpanded(!isExpanded)} />
-        </div>
-        <div className={styles.sideTabsWrapper}>
-          {Object.entries(tabs).map(([, eachTab]) => (
+    <div className={clsx(styles.sidebar, { [styles.notExpanded]: !isExpanded })}>
+      <LogoToggle isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
+      <div className={styles.mainAction}>
+        <Indicator selectedIndex={selectedIndex} position={topPosition} />
+        <div className={styles.sideTabsWrapper} ref={sideTabsWrapperRef}>
+          {tabsArray.map(([, eachTab]) => (
             <SideTab
               key={eachTab.path}
               tab={eachTab}
@@ -46,9 +44,6 @@ const Sidebar: FC<SidebarProps> = ({ isExpanded, setIsExpanded }) => {
             />
           ))}
         </div>
-      </div>
-      <div className={styles.botSidebarContainer}>
-        <SideAction icon={faRightFromBracket} onClick={() => {}} />
       </div>
     </div>
   );

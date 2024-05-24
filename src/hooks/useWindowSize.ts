@@ -5,7 +5,7 @@ type WindowSize = {
   height: number;
 };
 
-export default function useWindowSize() {
+export default function useWindowSize(): WindowSize {
   const [size, setSize] = useState<WindowSize>({ width: 0, height: 0 });
   useLayoutEffect(() => {
     function updateSize(): void {

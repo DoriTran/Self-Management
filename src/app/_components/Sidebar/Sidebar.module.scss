@@ -1,141 +1,35 @@
 @import "@/app/globals.scss";
 
-.sidebarWrapper {
+.sidebar {
   position: fixed !important;
+  left: 0px;
   overflow-x: hidden;
   overflow-y: auto;
+  width: $expandedSidebar;
   height: 100%;
-  transition: width 0.3s ease;
-  background-color: $background;
-  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  background-color: #8b72e7;
+  background-image: linear-gradient(to bottom, #8b72e7, #ffcfc5);
 
   @include flexCol;
   justify-content: space-between;
 
-  .topSidebarContainer {
+  .mainAction {
     @include flexCol;
     width: 100%;
-
-    .logo {
-      @include flexRow;
-      cursor: pointer;
-      height: 80px;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .logoExpanded {
-      transform: rotate(270deg);
-    }
-
-    .logoCollapsed {
-      transform: rotate(0deg);
-    }
+    height: inherit;
 
     .sideTabsWrapper {
       @include flexCol;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding-top: 25px;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 15px;
+      height: 100%;
       width: 100%;
     }
   }
-
-  .botSidebarContainer {
-    @include flexCol;
-    align-items: flex-start;
-    justify-content: flex-end;
-    width: 100%;
-    padding-bottom: 5px;
-
-    .action {
-      @include flexCol;
-      width: auto;
-      height: 60px;
-      padding-left: 20px;
-      cursor: pointer;
-    }
-  }
 }
 
-.sidebarExpanded {
-  width: $expandedSidebar;
-}
-
-.sidebarCollapsed {
-  width: $collapsedSidebar;
-}
-
-.tab {
-  position: relative;
-  @include flexCol;
-  width: auto;
-  height: 60px;
-  transition: background-color 0.3s ease-in-out;
-
-  margin: 5px;
-  margin-left: 5px;
-  cursor: pointer;
-
-  .selectedGum {
-    z-index: 2;
-    position: absolute;
-    top: 5px;
-    left: 0px;
-    height: 50px;
-    width: 4px;
-    border-top-right-radius: 35px;
-    border-bottom-right-radius: 35px;
-    background-color: $primary-dark;
-  }
-
-  .decorator {
-    z-index: 1;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 60px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-
-    @include baseGradient;
-  }
-
-  .notSelectedDecorator {
-    width: 0px;
-    transition: width 0.15s ease;
-  }
-
-  .expandedDecorator {
-    width: calc($expandedSidebar - 10px);
-    transition: width 0.3s ease;
-  }
-
-  .unexpandedDecorator {
-    width: calc($collapsedSidebar - 8px);
-    transition: width 0.3s ease;
-  }
-
-  .tabContent {
-    z-index: 3;
-    @include flexRow;
-    width: calc($expandedSidebar - 15px - 5px); // pdding and margin
-    justify-content: flex-start;
-    gap: 25px;
-    padding-left: 15px;
-    overflow: hidden;
-
-    .tabTitle {
-      font-family: $mali;
-      font-size: $large;
-      color: $pri-black-light;
-      transition:
-        color 0.5s ease,
-        font-weight 0.3s ease;
-    }
-
-    .tabTitleSelected {
-      color: $primary-dark;
-      font-weight: $bold-weight;
-    }
-  }
+.notExpanded {
+  left: $leftPositionSidebar;
 }

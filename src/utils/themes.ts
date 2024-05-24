@@ -53,10 +53,12 @@ export const themes: Themes = {
     phone: 576,
   },
   sidebar: {
-    expandedWidth: "300px",
-    collapsedWidth: "70px",
+    expandedWidth: "230px",
+    collapsedWidth: "80px",
   },
 };
+
+themes.sidebar.leftPositionSidebar = `calc(${themes.sidebar.collapsedWidth} - ${themes.sidebar.expandedWidth})`;
 
 export interface Mixin {
   [key: string]: {

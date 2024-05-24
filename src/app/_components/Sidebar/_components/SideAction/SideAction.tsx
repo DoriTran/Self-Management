@@ -1,12 +1,8 @@
 import { ApIcon } from "@/components";
 import { themes } from "@/utils/themes";
 import { FC } from "react";
-import styles from "./Sidebar.module.scss";
-
-interface SideActionProps {
-  onClick: React.MouseEventHandler<HTMLDivElement>;
-  icon: any;
-}
+import { SideActionProps } from "./SideAction.type";
+import styles from "./SideAction.module.scss";
 
 const SideAction: FC<SideActionProps> = ({ icon, onClick }) => {
   return (

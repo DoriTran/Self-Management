@@ -43,8 +43,9 @@ $tablet-breakpoint: 768px;
 $phone-breakpoint: 576px;
 
 // Other global styles
-$expandedSidebar: 300px;
-$collapsedSidebar: 70px;
+$expandedSidebar: 230px;
+$collapsedSidebar: 80px;
+$leftPositionSidebar: calc($collapsedSidebar - $expandedSidebar);
 
 // Mixing styles
 @mixin username {
