@@ -22,6 +22,8 @@ export const themes: Themes = {
     priGreen: "#2db46e",
     priRed: "#ed4337",
     priGrey: "#898c90",
+    priPurple: "#8b72e7",
+    priPink: "#ffcfc5",
   },
   font: {
     lexend: "Lexend, sans-serif",

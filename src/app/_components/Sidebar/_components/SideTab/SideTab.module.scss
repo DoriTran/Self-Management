@@ -24,7 +24,7 @@
   }
 
   .tabTitleSelected {
-    color: $pri-white;
+    color: $primary-dark;
     font-size: $extra;
     font-weight: $bold-weight;
   }
@@ -36,7 +36,7 @@
     cursor: pointer;
     border-radius: 50%;    
     margin: 0 15px;
-    transition: margin 0.5s ease, box-shadow 0.5s ease;
+    transition: margin 0.5s ease, box-shadow 3s ease;
   }
 
   .icon:hover {

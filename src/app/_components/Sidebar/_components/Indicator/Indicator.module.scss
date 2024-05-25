@@ -50,3 +50,11 @@
   border-radius: 50%;
   z-index: 2;
 }
+
+.title {
+  transition: top 0.5s ease, width 0.5s ease;
+  position: absolute;
+  right: 6px;
+  height: 60px;
+  background: linear-gradient(to left, $pri-white, transparent);
+}

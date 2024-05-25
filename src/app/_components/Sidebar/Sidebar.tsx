@@ -31,7 +31,7 @@ const Sidebar: FC<SidebarProps> = ({ isExpanded, setIsExpanded }) => {
     <div className={clsx(styles.sidebar, { [styles.notExpanded]: !isExpanded })}>
       <LogoToggle isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
       <div className={styles.mainAction}>
-        <Indicator selectedIndex={selectedIndex} position={topPosition} />
+        <Indicator selectedIndex={selectedIndex} position={topPosition} isExpanded={isExpanded} />
         <div className={styles.sideTabsWrapper} ref={sideTabsWrapperRef}>
           {tabsArray.map(([, eachTab]) => (
             <SideTab
