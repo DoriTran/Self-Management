@@ -8,8 +8,8 @@
   width: $expandedSidebar;
   height: 100%;
   transition: left 0.3s ease;
-  background-color: $pri-purple;
-  background-image: linear-gradient(to bottom, $pri-purple, $pri-pink);
+  background-color: $primary-dark;
+  background-image: linear-gradient(to bottom, $primary-dark, $secondary);
 
   @include flexCol;
   justify-content: space-between;

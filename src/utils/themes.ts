@@ -10,10 +10,10 @@ interface Themes {
 export const themes: Themes = {
   color: {
     primary: "#ccd8f8",
-    primaryDark: "#6a65ff",
+    primaryDark: "#8b72e7",
     primaryLight: "#e7e7ff",
-    secondary: "#fcdcfe",
-    secondartDark: "#f7418f",
+    secondary: "#ffcfc5",
+    secondaryDark: "#f7418f",
     background: "#f9fbfc",
 
     priBlack: "#090027",
@@ -22,12 +22,12 @@ export const themes: Themes = {
     priGreen: "#2db46e",
     priRed: "#ed4337",
     priGrey: "#898c90",
-    priPurple: "#8b72e7",
-    priPink: "#ffcfc5",
   },
   font: {
     lexend: "Lexend, sans-serif",
     mali: "Mali, sans-serif",
+    roboto: "Roboto, sans-serif",
+    poetsenOne: "Poetsen One, sans-serif",
   },
   fontSize: {
     small: "12px",

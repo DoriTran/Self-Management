@@ -1,49 +1,41 @@
 @import "@/app/globals.scss";
 
-.totalBlance {
+.balanceCard {
   margin: 5px;
-  padding: 15px;
-  height: 510px;
-  transition: height 0.3s ease-in-out;
+  height: fit-content;
   overflow: hidden;
+  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.5)), url("/img/balance3.png");
 
-  .totalBlanceWrapper {
-    width: 350px;
-    background: none;
-    background-color: $primary;
-    border: 2px $pri-white solid;
-    padding: 30px 0;
-    @include flexCol;
-    gap: 10px;
+  .totalBalance {
+    padding: 20px 30px;
 
-    .totalIconWrapper {
-      @include flexRow;
-      @include size(175px);
-      transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
-      background-color: $pri-white;
-      border-radius: 50%;
-    }
-
-    .totalBlanceText {
+    .description {
       font-family: $mali;
       font-weight: $bold-weight;
-      font-size: $super;
+      font-size: $ample;
+      color: $pri-white;
       transition: font-size 0.3s ease-in-out;
     }
 
-    .totalBlanceNumber {
+    .balance {
+      padding-top: 10px;
       font-family: $lexend;
       font-weight: $bold-weight;
       font-size: $brand;
-      color: $primary-dark;
+      color: $pri-black;
+      text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
       transition: font-size 0.3s ease-in-out;
     }
   }
 
-  .dailyChangeWrapper {
+  .dailyChange {
     @include flexCol;
-    padding-top: 15px;
     gap: 5px;
+    background: linear-gradient(to top, white 45%, transparent 100%);
 
     .todayChangesText {
       transition: height 0.15s ease-in-out;
@@ -57,44 +49,8 @@
     .todayChangesNumber {
       @include flexRow;
       justify-content: space-around;
-      height: 50px;
+      height: 60px;
       width: 90%;
-    }
-  }
-}
-
-
-@media screen and (max-width: $screen-breakpoints) {
-  .totalBlance {
-    height: 330px;
-
-    .totalBlanceWrapper {
-      width: 300px;
-      padding: 15px 0;
-
-      .totalIconWrapper {
-        @include size(100px);
-      }
-
-      .totalBlanceText {
-        font-size: $moderate;
-      }
-
-      .totalBlanceNumber {
-        font-size: $ample;
-      }
-    }
-
-    .dailyChangeWrapper {
-      padding-top: 10px;
-
-      .todayChangesText {
-        height: 0px;
-      }
-
-      .todayChangesNumber {
-        height: 35px;
-      }
     }
   }
 }

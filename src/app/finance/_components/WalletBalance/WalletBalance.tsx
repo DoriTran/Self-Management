@@ -1,9 +1,10 @@
 "use client";
 
 import { ApScrollbar } from "@/components";
+import { dummyBalance } from "@/data/balance/dummy";
 import TotalBalance from "./TotalBalance/TotalBalance";
-import { dummyBalances } from "../../page";
 import styles from "./WalletBalance.module.scss";
+import Balance from "./Balance/Balance";
 
 const WalletBalance = () => {
   // Height of the page - navbar - margin - inner margin
@@ -14,12 +15,17 @@ const WalletBalance = () => {
       className={styles.walletBalanceScrollContainer}
     >
       <TotalBalance />
-      {Object.entries(dummyBalances).map(([key, value]) => (
-        <div key={key}>
-          <span>{key}: </span>
-          <span>{value}</span>
-        </div>
-      ))}
+      <div className={styles.balances}>
+        {dummyBalance.map((balance, index) => (
+          <Balance
+            key={index}
+            icon={balance.icon}
+            dcon={balance.data}
+            type={balance.name}
+            amount={balance.amount || 0}
+          />
+        ))}
+      </div>
     </ApScrollbar>
   );
 };

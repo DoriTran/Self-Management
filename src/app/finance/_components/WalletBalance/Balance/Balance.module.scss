@@ -1,0 +1,89 @@
+@import "@/app/globals.scss";
+
+$container-height: 70px;
+$half-container-height: calc($container-height / 2);
+$clip-path-edge: 50px;
+$side-length: 40px;
+
+$change-length: 10px;
+$change-length-extend: 40%;
+
+.container {
+  position: relative;
+  width: 100%;
+  height: $container-height;
+  @include flexRow;
+  justify-content: flex-start;
+
+  .holder {
+    z-index: 3;
+    @include flexRow;
+    width: $container-height;
+    height: $container-height;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-color: $pri-purple-light;
+
+    .innerHolder {
+      @include flexRow;
+      width: 55px;
+      height: 55px;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      background-color: $pri-purple;
+    }
+  }
+
+  .balance {
+    margin-left: -$half-container-height;
+    height: $container-height;
+    transition: width 0.5s ease;
+    z-index: 2;
+
+    .type {
+      height: $half-container-height;
+      line-height: $half-container-height;
+      vertical-align: middle;
+      background-color: $primary-light;
+      background-image: linear-gradient(to right, $pri-purple, $pri-purple-light 80%);
+      clip-path: polygon(0 0, calc(100% - $side-length) 0, 100% 100%, 0 100%);
+      padding-left: 45px;
+      color: white;
+      font-family: $mali;
+      font-size: $extra;
+      font-weight: $bold-weight;
+    }
+
+    .amount {
+      height: $half-container-height;
+      line-height: $half-container-height;
+      vertical-align: middle;
+      background-image: linear-gradient(to right, $secondary-dark, $secondary);
+      clip-path: polygon(0 0, 100% 0, calc(100% - $side-length) 100%, 0 100%);
+      padding-left: 45px;
+      color: white;
+      font-family: $lexend;
+      font-size: $extra;
+      font-weight: $bold-weight;
+    }
+  }
+
+  .change {
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    height: $container-height;
+    line-height: $container-height;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 10%;
+    font-family: $mali;
+    font-size: $extra;
+    width: calc(100% - 45px);
+    transition: width 0.5s ease;
+    background-color: $pri-yellow-light;
+    clip-path: polygon(0% 0%, calc(100% - $side-length) 0, 100% 50%, calc(100% - $side-length) 100%, 0 100%);
+  }
+
+  .change-extend {
+    width: $change-length-extend;
+  }
+}
